@@ -1,0 +1,21 @@
+{
+    "name": "griffolion/psr3-dot-notation-processor",
+    "description": "Allows dot notation when using curly bracket interpolation in Monolog log messages.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Griffolion\\Psr3DotNotationProcessor\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andy Hall",
+            "email": "andyhall89@protonmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "monolog/monolog": ">=2 <3"
+    }
+}
