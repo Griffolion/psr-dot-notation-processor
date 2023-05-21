@@ -1,16 +1,17 @@
 {
-    "name": "griffolion/psr3-dot-notation-processor",
+    "name": "griffolion/psr-dot-notation-processor",
     "description": "Allows dot notation when using curly bracket interpolation in Monolog log messages.",
+    "keywords": ["log", "logging", "psr-3"],
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Griffolion\\PsrDotNotationProcessor\\": "src"
+            "Griffolion\\": "src/Griffolion"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Griffolion\\PsrDotNotationProcessor\\": "test"
+            "Griffolion\\Test\\": "test/Griffolion"
         }
     },
     "authors": [
@@ -27,5 +28,10 @@
     "require-dev": {
         "ext-json": "*",
         "phpunit/phpunit": "^8.5.14"
+    },
+    "scripts": {
+        "unit-tests": [
+            "vendor/bin/phpunit --bootstrap vendor/autoload.php test"
+        ]
     }
 }
