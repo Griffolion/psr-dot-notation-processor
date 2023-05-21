@@ -5,7 +5,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Griffolion\\Psr3DotNotationProcessor\\": "src/"
+            "Griffolion\\PsrDotNotationProcessor\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Griffolion\\PsrDotNotationProcessor\\": "test"
         }
     },
     "authors": [
@@ -14,8 +19,13 @@
             "email": "andyhall89@protonmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
-        "monolog/monolog": ">=2 <3"
+        "php": ">=7.2",
+        "monolog/monolog": "^2 <3"
+    },
+    "require-dev": {
+        "ext-json": "*",
+        "phpunit/phpunit": "^8.5.14"
     }
 }
