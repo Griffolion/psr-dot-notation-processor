@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Validate composer.json and composer.lock
+    - name: Validate composer.json and composer.lockd
       run: composer validate
 
     - name: Install dependencies
