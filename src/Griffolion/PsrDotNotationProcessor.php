@@ -35,7 +35,7 @@ class PsrDotNotationProcessor implements ProcessorInterface
         $replacements = [];
 
         foreach ($variables as $variable) {
-            if (null !== $replacementValue = $this->getNestedContextValue($record['context'], $variable)) {
+            if (null !== $replacementValue = $this->getNestedContextValue($record['context'], explode('.', $variable))) {
                 $replacements['{'.$variable.'}'] = $replacementValue;
             }
         }
@@ -52,20 +52,28 @@ class PsrDotNotationProcessor implements ProcessorInterface
         return $record;
     }
 
-    protected function getNestedContextValue($contextValue, string $variable): ?string
+    /**
+     * @param mixed $contextValue,
+     * @param string $variable
+     * @return ?string
+     */
+    protected function getNestedContextValue($contextValue, array $pathSegments): ?string
     {
-        if ('' === $variable) {
+        if (empty($pathSegments)) {
             return $this->getLoggableValue($contextValue);
         }
-        $variables = explode('.', $variable);
-        $currentLevel = array_shift($variables);
+        $currentLevel = array_shift($pathSegments);
         if (is_array($contextValue) && array_key_exists($currentLevel, $contextValue)) {
-            return $this->getNestedContextValue($contextValue[$currentLevel], implode('.', $variables));
+            return $this->getNestedContextValue($contextValue[$currentLevel], $pathSegments);
         }
         return null;
     }
 
-    protected function getLoggableValue(mixed $value): string
+    /**
+     * @param mixed $value
+     * @return string
+     */
+    protected function getLoggableValue($value): string
     {
         if (is_null($value) || is_scalar($value) || (is_object($value) && method_exists($value, "__toString")) || is_string($value)) {
             return $value;
